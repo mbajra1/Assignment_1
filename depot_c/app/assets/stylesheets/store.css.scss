@@ -9,4 +9,10 @@
   img {width: 80px; margin-right: 5px; margin-bottom: 5px; position: absolute;}
   p, div.price_line {margin-left: 100px; margin-top: 0.5em; margin-bottom: 0.8em;}
   }
+  .store-stock {
+    color: #2E2F30;
+    p{color: #222277; font-style: italic}
+    .out-of-stock{color: #cc0000; font-style: italic}
+  }
+
 }

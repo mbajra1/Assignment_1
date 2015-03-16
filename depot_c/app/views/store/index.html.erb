@@ -6,15 +6,41 @@
       <%= image_tag(product.image_url) %>
       <h3><%= product.title %></h3>
       <%= sanitize(product.description) %>
+      <div class="store-stock">
+        <% if(product.towsonStore == 0 and product.onlineStore > 0 ) %>
+            <p>Available online only: <br>
+              Stock online:<%= product.onlineStore %>
+            </p>
+        <% elsif(product.towsonStore > 0 and product.onlineStore ==0 ) %>
+            <p>Available in-store only: <br>
+              Stock in-store:<%= product.towsonStore %>
+            </p>
+        <% elsif(product.towsonStore == 0 and product.onlineStore ==0 ) %>
+            <p class="out-of-stock">Out of Stock in Store<br>Out of Stock online</p>
+        <% else %>
+            <p>Available in-store: <br>
+              Stock in-store:<%= product.towsonStore %>
+            </p>
+            <p>Available online: <br>
+              Stock online:<%= product.onlineStore %>
+            </p>
+        <%end%>
+
+      </div>
       <div class="price_line">
           <span class="price">
-            <%= number_to_currency(product.price, precision: 3) %><br>
-            <%= number_to_currency(-63, negative_format: "(%u%n)") %><br>
-            <%= number_to_currency(product.price, unit: "S$") %><br>
-            <%= number_to_currency(product.price, separator: ",")%><br>
-            <%= number_to_currency(product.price, delimiter: "" ) %><br>
-            <%= number_to_currency(product.price, format: "%n %u") %><br>
+            <%= number_to_currency(product.price, precision: 3) %> &nbsp;&nbsp;
+            <%= number_to_currency(-63, negative_format: "(%u%n)") %> &nbsp;&nbsp;
+            <%= number_to_currency(product.price, unit: "S$") %> &nbsp;&nbsp;
+            <%= number_to_currency(product.price, separator: ",")%> &nbsp;&nbsp;
+            <%= number_to_currency(product.price, delimiter: "" ) %> &nbsp;&nbsp;
+            <%= number_to_currency(product.price, format: "%n %u") %> &nbsp;&nbsp;
           </span>
+      </div>
+
+      <div>
+
+
       </div>
     </div>
 <% end %>

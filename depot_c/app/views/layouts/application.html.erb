@@ -16,8 +16,11 @@
     <li><a href="http://www..../faq">Questions</a></li>
     <li><a href="http://www..../news">News</a></li>
     <li><a href="http://www..../contact">Contact</a></li>
-      <li><%= get_date_time %></li>
   </ul>
+    <p class="dt-color">Date and Time: <%= get_date_time %></p>
+    <p class="dt-color">
+      <%= get_last_visit %>
+    </p>
   </div>
   <div id="main">
     <%= yield %>

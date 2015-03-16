@@ -15,17 +15,34 @@ class ApplicationController < ActionController::Base
 
   def get_date_time
 
-    cookies[:the_time] = Time.now.to_s;
-    # cookies[:the_name] = { :value => "Web", :expires => 120.days.from_now :path => "/cookies"}
+    time = Time.now
+    time.strftime('%Y-%m-%d %H:%M:%S')
 
   end
+
+  def set_cookies
+
+    cookies[:the_time] = Time.now
+
+  end
+
+
+  helper_method :get_last_visit
 
   def get_last_visit
-    if cookies[:the_name] == nil?
-      cookie_value = cookies[:the_time]
-      render(:text => "The last time you visited was #{cookie_value}")
-    else
+
+    last_visit = cookies[:the_time]
+    cookies[:expires]= 120.days.from_now
+    last_visit_time = Time.strptime(last_visit,'%Y-%m-%d %H:%M:%S')
+    current_time = Time.now
+    time_diff = (current_time - last_visit_time)/86400
+
+    if time_diff > 120
       render(:text => "Your last visited was too long ago.")
+    else
+      render(:text => "The last time you visited was #{last_visit}")
     end
+
   end
+
 end

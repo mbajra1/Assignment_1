@@ -12,6 +12,7 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
+    #@products = Product.where("towsonStore > 0 OR onlineStore > 0")
     @products = Product.all
   end
 
